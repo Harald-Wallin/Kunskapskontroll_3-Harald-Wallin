@@ -1,0 +1,100 @@
+/*PROMPT 2: Set all font-family for all text to "fonts/CupAndTalon.ttf.
+Centralize all <list>-items vertically, and give the <H1>-element more
+"margin:top" so it sits centralized between the top of the page and the <list>-items."*/
+
+@font-face {
+    font-family: 'CupAndTalon';
+    src: url("../fonts/CupAndTalon.ttf") format('truetype');
+}
+
+* {
+    font-family: 'CupAndTalon', sans-serif;
+}
+
+h1 {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    font-size: 38x;
+    text-align: center;
+}
+
+body {
+    justify-content: center;
+}
+
+/*PROMPT1: Generate css that sets the page background to "images/background.png",
+and covers the whole viewport. 
+Implement flexbox on <body> and centralize the <H1>-element horizontally, and centralize the
+ <list>-items side-to-side in the center of the viewport below the <H1>-element.
+ Each <H3>-element shall be positioned below its sibling <img>-element.
+ Set all text color in the document to the "#992A0A" hex-color.
+ Do nothing else.
+*/
+
+* {
+    color: #992A0A;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("../images/background.png");
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+ul, ol {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    gap: 120px;
+}
+
+li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 218px;
+}
+
+img {
+    display: block;
+}
+
+h3 {
+    margin-top: 10px;
+    font-size: 28px;
+    text-align: center;
+
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/*PROMPT 3: Make all h3-texts wrap. Give each <list> element more space-between. 
+Make each <List>-element slightly bigger on-hover. Give each <List> element slight shadow.
+Remove the underline of all <link>-text.
+(Edit: give all
+*/
+
+
+li:hover {
+    transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+a {
+    text-decoration: none;
+}
+
+footer{
+    margin-top:auto;
+}
