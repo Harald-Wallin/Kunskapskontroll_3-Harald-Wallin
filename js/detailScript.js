@@ -30,7 +30,7 @@ async function fetchMovieQuotes() {
 }
 
 let randomQuote = function(){
-
+//FORTSÄTT HÄR + GÖR EN FETCH CHARACTER FUNKTION
 }
 //console log
 fetchMovieQuotes().then(data => {
