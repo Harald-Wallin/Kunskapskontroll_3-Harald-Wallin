@@ -11,11 +11,15 @@ Centralize all <list>-items vertically, and give the <H1>-element more
     font-family: 'CupAndTalon', sans-serif;
 }
 
-h1 {
+h2 {
     margin-top: 100px;
-    margin-bottom: 100px;
-    font-size: 38x;
+    font-size: 28px;
     text-align: center;
+}
+
+h1{
+    text-align: center;
+    font-size: 58px;
 }
 
 body {
@@ -87,7 +91,7 @@ Remove the underline of all <link>-text.
 
 li:hover {
     transform: scale(1.1);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
     transition: transform 0.2s ease;
 }
 
@@ -98,3 +102,74 @@ a {
 footer{
     margin-top:auto;
 }
+
+
+.content{
+
+    border: solid #992A0A 2px;
+    height:200px;
+    width:600px;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 50px;
+}
+
+/*PROMPT 4: Generate css for the class .buttons so that all children inside the element
+is centralized horizontally and vertically. Make each button have backgroundcolor "#992A0A" and 
+text color "#1A130D". Make the first child of the <.buttons>-element wider and slightly
+taller than the second child. Make the buttons "flat" with give them rounded corners with border-radius.*/
+.buttons {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.buttons > * {
+    background-color: #992A0A;
+    color: #1A130D;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'CupAndTalon', sans-serif;
+}
+
+.buttons > :first-child {
+    width: 150px;
+    height: 40px;
+    font-size: 34px;
+}
+
+.buttons > :nth-child(2) {
+    width: 60px;
+    height: 30px;
+    font-size: 38;
+}
+
+/*PROMPT 5: Generate css that makes all <p> elements bigger. The text of #Quote shall
+be centered in the parent element, and the text of #Character shall be positioned bottom-left
+in the parent element. Also give the class .Content more left&right padding.*/
+
+p {
+    font-size: 1.4rem;
+}
+
+#quote {
+    text-align: center;
+}
+
+.content {
+    position: relative;
+    padding: 20px;
+}
+
+#character {
+    position: absolute;
+    bottom: 0;
+    right:  0;
+    margin-right: 50px;
+}
+
+
+
