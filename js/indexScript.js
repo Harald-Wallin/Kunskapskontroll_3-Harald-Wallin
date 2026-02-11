@@ -45,6 +45,7 @@ async function displayMovies() {
         movie.name === "The Return of the King"
     );
 
+    //Här skapas HTML'en, automatiserat IFALL man vill lägga till andra filmer/böcker
     for (let movie of lotrMovies) {
         const listItem = document.createElement("li");
         const link = document.createElement("a");
@@ -65,7 +66,6 @@ async function displayMovies() {
         indexList[0].appendChild(listItem);
     }
 }
-
 
 displayMovies();
 

@@ -147,3 +147,29 @@ taller than the second child. Make the buttons "flat" with give them rounded cor
     font-size: 38;
 }
 
+/*PROMPT 5: Generate css that makes all <p> elements bigger. The text of #Quote shall
+be centered in the parent element, and the text of #Character shall be positioned bottom-left
+in the parent element. Also give the class .Content more left&right padding.*/
+
+p {
+    font-size: 1.4rem;
+}
+
+#quote {
+    text-align: center;
+}
+
+.content {
+    position: relative;
+    padding: 20px;
+}
+
+#character {
+    position: absolute;
+    bottom: 0;
+    right:  0;
+    margin-right: 50px;
+}
+
+
+
