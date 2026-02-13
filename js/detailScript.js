@@ -14,6 +14,15 @@ let characterParagraph = document.getElementById("character");
 let generateBtn = document.getElementById("generateBtn");
 let backBtn = document.getElementById("backBtn");
 
+
+
+/*PROMPT 8: Generate a click event-listener for backBtn that directs user back to index.page*/
+backBtn.addEventListener("click", function () {
+    window.location.href = "index.html";
+});
+
+
+
 //Hämtar det första elementet med .movieName-klassen från document, och sätter relevant innehåll
 const headerMovieName = document.querySelector(".movieName");
 headerMovieName.innerHTML = movieName;
@@ -34,17 +43,15 @@ async function fetchMovieQuotes() {
     }
 }
 
-/* PROMPT 5: Generate an async function named 'randomQuoteGenerator' that awaits fetchMovieQuotes(), picks a random object
- from 'data.docs'-function, and returns the value of '.dialog:' and 'character:'in a variable called 'randomQuote'
-*/
-async function randomQuoteGenerator() {
-    const data = await fetchMovieQuotes();
 
-    //ALLT innuti det hämtade API't
-    const quotesArray = data.docs;
+/* PROMPT 5: Generate an async function named 'randomQuoteGenerator' that awaits fetchMovieQuotes(), picks a random object
+from 'data.docs'-function, and returns the value of '.dialog:' and 'character:'in a variable called 'randomQuote'
+(EDIT: implementerar LocalStorage)*/
+async function randomQuoteGenerator() {
+    const quotesArray = await getMovieQuotes();
 
     //(Detta funkar men jag tror jag hade jobbat med en randomNumber-generator(?) om jag jobbat
-    //utan AI (för att jag är mer bekväm med det)).
+    //utan AI (mer bekväm med det)).
     const randomIndex = Math.floor(Math.random() * quotesArray.length);
 
     //Plockar ut alla element tillhörande en quote 
@@ -53,6 +60,8 @@ async function randomQuoteGenerator() {
 
     return randomQuote;
 }
+
+
 
 /*PROMPT 6: Generate an async fetch-function called 'fetchCharacter' with 'try & catch', that 
 fetches data from the URL "https://the-one-api.dev/v2/character/", awaits and converts the 
@@ -73,15 +82,60 @@ async function fetchCharacter(characterId) {
     }
 }
 
+
+/*PROMPT 9: Generate a localStorage.setItem-function called LocalStoreSaveData*/
+//Vi skickar till Local Storage
+function LocalStoreSaveData(key, data){
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+
+
+/*PROMPT 10: Generate a localStorage.getItem-function called LocalStoreGetData*/
+//Vi hämtar från Local Storage
+function LocalStoreGetData(key){
+    let storedData = localStorage.getItem(key);
+
+    //Ternary: "(if(storedData((bool))>return parsed, else return null)"
+    return storedData ? JSON.parse(storedData) : null;
+}
+
+
+
+/*PROMPT 11: Generate an async function named 'getMovieQuotes' that creates two new variables:
+'storageKey' with the value '"quotes_" + movieId', and 'cachedData' with the value '
+LocalStoreGetData(storageKey)'. With an if-statement, check if (cachedData),
+return cachedData. Else, await fetchMovieQuotes and save the data through 'LocalStoreSaveData' with
+'storageKey' as key-value + data.docs as data-value, and return data.docs; */
+async function getMovieQuotes() {
+
+    const storageKey = "quotes_" + movieId;
+
+    const cachedData = LocalStoreGetData(storageKey);
+
+    if (cachedData) {
+        return cachedData;
+    }
+    else{
+
+    const data = await fetchMovieQuotes();
+
+    LocalStoreSaveData(storageKey, data.docs);
+
+    return data.docs;
+    }
+}
+
+
+
 /*PROMPT 7: Generate a click event listener for 'generateBtn' that runs runs an "async" function
 with 'try & catch', wich in turn runs 'randomQuoteGenerator()' and 'fetchCharacter()', 
 sets quoteParagraph.textContent to the quote's dialog, and sets characterParagraph.textContent
 to the returned character name. 'Catch' shall log "Något gick fel" inside quoteParagraph.textContent,
-and a console.log with an error.message.
-*/
+and a console.log with an error.message.*/
 generateBtn.addEventListener("click", async function () {
     try {
-        const randomQuote = await randomQuoteGenerator();
+        randomQuote = await randomQuoteGenerator();
 
         quoteParagraph.textContent = randomQuote.dialog;
 
@@ -96,10 +150,7 @@ generateBtn.addEventListener("click", async function () {
     }
 });
 
-/*PROMPT 8: Generate a click event-listener for backBtn that directs user back to index.page*/
-backBtn.addEventListener("click", function () {
-    window.location.href = "index.html";
-});
+
 
 
 //---------Borttagna console.logs-----------

@@ -103,13 +103,12 @@ footer{
     margin-top:auto;
 }
 
-
 .content{
 
-    border: solid #992A0A 2px;
+    border: double #992A0A 4px;
     height:200px;
     width:600px;
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 15px;
     margin-bottom: 50px;
 }
